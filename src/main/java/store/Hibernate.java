@@ -1,8 +1,6 @@
 package store;
 
-import model.Car;
-import model.Driver;
-import model.Engine;
+import model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -51,7 +49,7 @@ public class Hibernate {
         tx(session -> (session.save(o)));
     }
 
-    public Engine findItem(int id) {
+    public Engine findEngine(int id) {
         return tx(session -> (session.get(Engine.class, id)));
     }
 
@@ -61,6 +59,14 @@ public class Hibernate {
 
     public Driver findDriver(int id) {
         return tx(session -> (session.get(Driver.class, id)));
+    }
+
+    public User findUser(int id) {
+        return tx(session -> (session.get(User.class, id)));
+    }
+
+    public Item findItem(int id) {
+        return tx(session -> (session.get(Item.class, id)));
     }
 
 }

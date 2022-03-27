@@ -1,16 +1,10 @@
 package store;
 
-import model.Car;
-import model.Driver;
-import model.Engine;
+import model.*;
 
 public class Main {
     public static void main(String[] args) {
-        Car car = new Car();
-        car.setEngine(Hibernate.getInstance().findItem(1));
-        car.getDrivers().add(Hibernate.getInstance().findDriver(1));
-        car.getDrivers().add(Hibernate.getInstance().findDriver(2));
-        car.getDrivers().add(Hibernate.getInstance().findDriver(3));
-        Hibernate.getInstance().add(car);
+        Item item = Item.of("Описание", "BMW", "Седан", Hibernate.getInstance().findUser(1));
+        Hibernate.getInstance().add(item);
     }
 }
