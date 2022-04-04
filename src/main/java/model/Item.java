@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -15,18 +16,22 @@ public class Item {
     private String brand;
     private String body;
     private boolean sold;
+    private Date dateCreated;
+    private boolean havePhoto;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User author;
 
-    public static Item of(String description, String brand, String body, User author) {
+    public static Item of(String description, String brand, String body, User author, boolean havePhoto) {
         Item item = new Item();
         item.description = description;
         item.brand = brand;
         item.body = body;
         item.author = author;
         item.sold = false;
+        item.havePhoto = havePhoto;
+        item.dateCreated = new Date();
         return item;
     }
 
@@ -87,5 +92,14 @@ public class Item {
     @Override
     public int hashCode() {
         return Objects.hash(id, description, brand, body, sold, author);
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" + "id=" + id + ", description='" + description + '\''
+                + ", brand='"
+                + brand + '\'' + ", body='" + body + '\''
+                + ", sold=" + sold + ", dateCreated=" + dateCreated
+                + ", havePhoto=" + havePhoto + ", author=" + author + '}';
     }
 }

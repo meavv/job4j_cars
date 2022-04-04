@@ -49,6 +49,13 @@ public class Hibernate {
         tx(session -> (session.save(o)));
     }
 
+    public void del(Object o) {
+        tx(session -> {
+            session.remove(o);
+            return session;
+        });
+    }
+
     public Engine findEngine(int id) {
         return tx(session -> (session.get(Engine.class, id)));
     }
