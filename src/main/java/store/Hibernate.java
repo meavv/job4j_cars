@@ -8,6 +8,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.util.List;
 import java.util.function.Function;
 
 public class Hibernate {
@@ -49,6 +50,11 @@ public class Hibernate {
         tx(session -> (session.save(o)));
     }
 
+    public Car addCar(Car o) {
+        tx(session -> (session.save(o)));
+        return o;
+    }
+
     public void del(Object o) {
         tx(session -> {
             session.remove(o);
@@ -56,20 +62,25 @@ public class Hibernate {
         });
     }
 
-    public Engine findEngine(int id) {
-        return tx(session -> (session.get(Engine.class, id)));
+    public List<Item> findAllItem() {
+        return tx(session -> session.createQuery("from Item", Item.class).getResultList());
     }
 
     public Car findCar(int id) {
         return tx(session -> (session.get(Car.class, id)));
     }
 
-    public Driver findDriver(int id) {
-        return tx(session -> (session.get(Driver.class, id)));
-    }
-
     public User findUser(int id) {
         return tx(session -> (session.get(User.class, id)));
+    }
+
+    public User findUser(String email) {
+        return tx(session -> {
+            String hql = "from model.User where email = :emailParam";
+            var query = session.createQuery(hql);
+            query.setParameter("emailParam", email);
+            return (User) query.uniqueResult();
+        });
     }
 
     public Item findItem(int id) {

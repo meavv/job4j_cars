@@ -3,6 +3,7 @@ package model;
 import javax.persistence.*;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -13,30 +14,61 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "ENGINE_ID_FK"))
-    private Engine engine;
+    private String brand;
+    private String body;
+    private String color;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "history_owner", joinColumns = {
-            @JoinColumn(name = "driver_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "car_id", nullable = false, updatable = false)})
-    private Set<Driver> drivers = new HashSet<>();
-
-    public Engine getEngine() {
-        return engine;
+    public Car(String brand, String body, String color) {
+        this.brand = brand;
+        this.body = body;
+        this.color = color;
     }
 
-    public void setEngine(Engine engine) {
-        this.engine = engine;
+    public Car() {
     }
 
-    public Set<Driver> getDrivers() {
-        return drivers;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setDrivers(Set<Driver> drivers) {
-        this.drivers = drivers;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return id == car.id && Objects.equals(brand, car.brand)
+                && Objects.equals(body, car.body) && Objects.equals(color, car.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, brand, body, color);
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" + "id=" + id + ", brand='"
+                + brand + '\'' + ", body='" + body + '\''
+                + ", color='" + color + '\'' + '}';
     }
 }
