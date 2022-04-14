@@ -37,13 +37,14 @@
     <servlet-class>servlet.ChangeStatusServlet</servlet-class>
   </servlet>
 
+
   <servlet-mapping>
     <servlet-name>ChangeStatus</servlet-name>
     <url-pattern>/changeStatus</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
-    <url-pattern>/save</url-pattern>
+    <url-pattern>/upload</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>DownloadServlet</servlet-name>

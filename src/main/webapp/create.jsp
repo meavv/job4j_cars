@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <html>
@@ -23,8 +23,23 @@
     <title>TODO</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    function addPhoto(id) {
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8081/job4j_cars/upload',
+            data: JSON.stringify({
+                id: id
+            }),
+            dataType: 'json'
+        }).done()
+            .fail(function (err) {
+                console.log(err);
+            });
+    }
+</script>
 <body>
-<form action="<%=request.getContextPath()%>/create.do" method="post"  >
+<form action="<%=request.getContextPath()%>/create.do" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label>Описание</label>
         <input type="text" class="form-control" name="description">
@@ -45,7 +60,11 @@
         <label>Цвет</label>
         <input type="text" class="form-control" name="color">
     </div>
+    <div class="form-group">
+    <input type="file">
+    </div>
     <button type="submit" class="btn btn-primary">Добавить объявление</button>
+
 </form>
 </body>
 </html>
