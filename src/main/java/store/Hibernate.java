@@ -46,6 +46,16 @@ public class Hibernate {
         }
     }
 
+    public boolean changeStatus(int id) {
+        return tx(session -> {
+            String hql = "update model.Item set sold = true where id = :idParam";
+            var query = session.createQuery(hql);
+            query.setParameter("idParam", id);
+            int result = query.executeUpdate();
+            return result != 0;
+        });
+    }
+
     public void add(Object o) {
         tx(session -> (session.save(o)));
     }
@@ -63,7 +73,7 @@ public class Hibernate {
     }
 
     public List<Item> findAllItem() {
-        return tx(session -> session.createQuery("from Item", Item.class).getResultList());
+        return tx(session -> session.createQuery("from Item where sold = 'false'", Item.class).getResultList());
     }
 
     public Car findCar(int id) {

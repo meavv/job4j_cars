@@ -27,13 +27,27 @@
     $(document).ready(function() {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/cars/index',
+            url: 'http://localhost:8081/job4j_cars/index',
             dataType: 'json'
         }).done()
             .fail(function (err) {
             console.log(err);
         });
     });
+
+    function changeStatus(id) {
+        $.ajax({
+            type: 'PUT',
+            url: 'http://localhost:8081/job4j_cars/changeStatus',
+            data: JSON.stringify({
+                id: id
+            }),
+            dataType: 'json'
+        }).done()
+            .fail(function (err) {
+                console.log(err);
+            });
+    }
 </script>
 <body>
 
@@ -74,6 +88,11 @@
                         </td>
                         <td>
                             <c:out value="${item.author.name}"/>
+                        </td>
+                        <td>
+                            <c:if test="${item.author.name == user.name}">
+                                <button type="button" class="btn btn-outline-danger" onclick="changeStatus(${item.id})">Продано</button>
+                            </c:if>
                         </td>
                     </tr>
                 </c:forEach>

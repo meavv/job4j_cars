@@ -32,8 +32,15 @@
     <servlet-name>UploadServlet</servlet-name>
     <servlet-class>servlet.UploadServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ChangeStatus</servlet-name>
+    <servlet-class>servlet.ChangeStatusServlet</servlet-class>
+  </servlet>
 
-
+  <servlet-mapping>
+    <servlet-name>ChangeStatus</servlet-name>
+    <url-pattern>/changeStatus</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/save</url-pattern>
