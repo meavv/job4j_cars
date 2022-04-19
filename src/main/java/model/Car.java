@@ -14,11 +14,14 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String brand;
+    @ManyToOne
+    @JoinColumn(name = "brand")
+    private Brand brand;
+
     private String body;
     private String color;
 
-    public Car(String brand, String body, String color) {
+    public Car(Brand brand, String body, String color) {
         this.brand = brand;
         this.body = body;
         this.color = color;
@@ -27,11 +30,11 @@ public class Car {
     public Car() {
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 

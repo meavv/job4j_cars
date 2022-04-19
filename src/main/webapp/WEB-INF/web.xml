@@ -36,6 +36,10 @@
     <servlet-name>ChangeStatus</servlet-name>
     <servlet-class>servlet.ChangeStatusServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>BrandServlet</servlet-name>
+    <servlet-class>servlet.BrandServlet</servlet-class>
+  </servlet>
 
 
   <servlet-mapping>
@@ -53,6 +57,10 @@
   <servlet-mapping>
     <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BrandServlet</servlet-name>
+    <url-pattern>/create</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>CreateServlet</servlet-name>

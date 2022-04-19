@@ -22,5 +22,7 @@
         <mapping class="model.Car" />
         <mapping class="model.User" />
         <mapping class="model.Item" />
+        <mapping class="model.Brand" />
+
     </session-factory>
 </hibernate-configuration>

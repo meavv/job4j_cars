@@ -1,5 +1,6 @@
 package servlet;
 
+import store.AdsRepository;
 import store.Hibernate;
 
 import javax.servlet.http.HttpServlet;
@@ -13,7 +14,7 @@ public class ChangeStatusServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String readLine = req.getReader().readLine().replaceAll("[^0-9\\+]", "");
         int i = Integer.parseInt(readLine);
-        boolean rsl = Hibernate.getInstance().changeStatus(i);
+        boolean rsl = AdsRepository.changeStatus(i);
         System.out.println(rsl);
     }
 

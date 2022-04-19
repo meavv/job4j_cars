@@ -39,7 +39,7 @@
     }
 </script>
 <body>
-<form action="<%=request.getContextPath()%>/create.do" method="post" enctype="multipart/form-data">
+<form action="<%=request.getContextPath()%>/create.do" method="post">
     <div class="form-group">
         <label>Описание</label>
         <input type="text" class="form-control" name="description">
@@ -50,7 +50,13 @@
     </div>
     <div class="form-group">
         <label>Бренд</label>
-        <input type="text" class="form-control" name="brand">
+
+        <select name="brand">
+            <c:forEach items="${brands}" var="item">
+            <option><c:out value="${item.name}"/></option>
+            </c:forEach>
+        </select>
+
     </div>
     <div class="form-group">
         <label>Кузов</label>

@@ -24,17 +24,7 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8081/job4j_cars/index',
-            dataType: 'json'
-        }).done()
-            .fail(function (err) {
-            console.log(err);
-        });
-    });
-
+    
     function changeStatus(id) {
         $.ajax({
             type: 'PUT',
@@ -55,7 +45,7 @@
 <div class="container">
     <a style="float: right" class="nav-link" href="<%=request.getContextPath()%>/logout.do"> <c:out value="${user.name}"/>  | Выйти</a>
     <a style="float: left" class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> Войти</a>
-    <a style="float: left" class="nav-link" href="<%=request.getContextPath()%>/create.jsp"> Добавить объявление </a>
+    <a style="float: left" class="nav-link" href="<%=request.getContextPath()%>/create"> Добавить объявление </a>
 
     <br>
     Объявление:
@@ -79,7 +69,7 @@
                             <img src="<c:url value='/download?name=${item.id}.jpg'/>" width="100px" height="100px"/>
                         </td>
                         <td>
-                            <c:out value="${item.car.brand}"/>
+                            <c:out value="${item.car.brand.name}"/>
                         </td>
                         <td>
                             <c:out value="${item.car.body}"/>

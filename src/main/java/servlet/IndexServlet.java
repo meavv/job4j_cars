@@ -1,5 +1,6 @@
 package servlet;
 
+import store.AdsRepository;
 import store.Hibernate;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("items", Hibernate.getInstance().findAllItem());
+        req.setAttribute("items", AdsRepository.findAllItem());
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }
